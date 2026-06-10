@@ -55,5 +55,18 @@ def study_plan():
         ]
     })
 
+@app.route("/interview-questions")
+def interview_questions():
+
+    return jsonify({
+        "questions": [
+            "What is CI/CD?",
+            "What is Docker?",
+            "Difference between Docker and Kubernetes?",
+            "What is Infrastructure as Code?",
+            "Explain Terraform State File."
+        ]
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)

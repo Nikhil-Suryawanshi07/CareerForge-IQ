@@ -6,6 +6,7 @@ function App() {
   const [certs, setCerts] = useState([]);
   const [score, setScore] = useState(0);
   const [studyPlan, setStudyPlan] = useState([]);
+  const [questions, setQuestions] = useState([]);
 
   const generatePlan = async () => {
     try {
@@ -34,6 +35,14 @@ function App() {
       const planData = await planResponse.json();
 
       setStudyPlan(planData.plan);
+
+      const interviewResponse = await fetch(
+        "http://127.0.0.1:5000/interview-questions"
+      );
+
+      const interviewData = await interviewResponse.json();
+
+      setQuestions(interviewData.questions);
 
     } catch (error) {
       console.error(error);
@@ -83,6 +92,13 @@ function App() {
       <ul>
         {studyPlan.map((week, index) => (
           <li key={index}>{week}</li>
+        ))}
+      </ul>
+
+      <h3>🎤 Interview Questions</h3>
+      <ul>
+        {questions.map((question, index) => (
+          <li key={index}>{question}</li>
         ))}
       </ul>
     </div>
